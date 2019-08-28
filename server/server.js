@@ -43,11 +43,11 @@ function onReadCompleted(readError, contents) {
     if (readError == null) {
         try {
             // Try to split values (remove also \r on Windows, if any)
-            contents = contents.replace("\r", "");
+            contents = contents.replace(/(\r)/gm, "");
             contents.split("\n").forEach(function(element) {
                 // Save only not-null values stored in settings
                 if (element != "" && element != null && element != undefined) {                  
-                    settings[element.split("=")[0]] = element.split("=")[1];
+                    settings[element.split("=")[0]] = parseElement(element.split("=")[1]);
                 }
             });
 
@@ -65,7 +65,7 @@ function onReadCompleted(readError, contents) {
             console.log("OK!");
             console.log("Starting up the server on port " + settings.port + "...");
             socket = setupConnection();
-        
+
             // If all goes ok, it's open!
             if (socket != null) {
                 writeOpening();
@@ -91,7 +91,6 @@ function setupConnection() {
     }
     
     return tempWebSocket;
-    
 }
 
 function writeLogo() {
@@ -107,13 +106,36 @@ function writeOpening() {
 }
 
 function onNewRequest(client, request) {
-    console.log("Received connection from a new client: " + request.connection.remoteAddress);
+    log("Received connection from a new client: " + request.connection.remoteAddress);
                 
     client.on('message', (msg) => {
         const receivedMessage = JSON.parse(msg);
 
         switch (receivedMessage.type) {}
     });
+}
+
+function log(message) {
+    if (settings.logAll)
+        console.log(message);
+}
+
+function parseElement(element) {
+    // Boolean?
+    if (element == "true") {
+        return true;
+    }
+    if (element == "false") {
+        return false;
+    }
+
+    // Numeric?
+    if (parseFloat(element) != NaN) {
+        return parseFloat(element);
+    }
+
+    // Fucking string
+    return element;
 }
 
 
