@@ -16,6 +16,8 @@ public class DNSManagerBasic implements DNSManager {
     @Override
     public final boolean updateRecord(final String rawURL) {
 
+        // TODO
+
         return true;
     }
 }

@@ -14,8 +14,7 @@ public interface DNSManagerExtended extends DNSManager {
      * Updates the DNS A record with the specified IP address.
      * 
      * @param ipAddress the current public IP address of the host
-     * @return if the request went fine (dafault {@code true} unless otherwise
-     *         specified)
+     * @return if the request went fine
      */
     boolean updateRecord(IPAddress ipAddress);
 
