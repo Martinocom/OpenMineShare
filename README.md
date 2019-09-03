@@ -22,4 +22,4 @@ Configuration files are already included in this repository, you should't need t
 Check the [contribution guidelines](https://github.com/Martinocom/OpenMineShare/blob/master/CONTRIBUTING.md).
  
 ### License
-This software is released under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0).
+You can find the updated license [here](https://github.com/Martinocom/OpenMineShare/blob/master/LICENSE) or by clicking on the official license tag at the top of this page.
