@@ -2,18 +2,22 @@
 
 <p align="center">
 Share your Minecraft server over several PCs. For friends use only!
- 
-[![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
-![GitHub contributors](https://img.shields.io/github/contributors/Martinocom/OpenMineShare)
-![GitHub repo size](https://img.shields.io/github/repo-size/Martinocom/OpenMineShare)
-![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/LeoSpyke96/OpenMineShare)
-![GitHub last commit](https://img.shields.io/github/last-commit/Martinocom/OpenMineShare)
 </p>
 
 ## Users
 Under construction.
 
 ## Developers
+
+### Badges
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/6b22f123c6fd4345abcebe0e0423bcee)](https://www.codacy.com/app/LeoSpyke96/OpenMineShare?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Martinocom/OpenMineShare&amp;utm_campaign=Badge_Grade)
+![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/LeoSpyke96/OpenMineShare)
+![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/LeoSpyke96/OpenMineShare)
+![GitHub last commit](https://img.shields.io/github/last-commit/Martinocom/OpenMineShare)
+
+[![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
+![GitHub contributors](https://img.shields.io/github/contributors/Martinocom/OpenMineShare)
+![GitHub repo size](https://img.shields.io/github/repo-size/Martinocom/OpenMineShare)
 
 
 ### Analysis
