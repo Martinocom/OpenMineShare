@@ -1,10 +1,18 @@
 # OpenMineShare
 Share your Minecraft server over several PCs. For friends use only!
+ 
+[![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
+
 
 ## Users
 Under construction.
 
 ## Developers
+
+
+### Analysis
+
+
 ### Javadocs
 Javadocs for the lastest stable release are available [here](https://leospyke96.github.io/OpenMineShare-javadoc).
 
