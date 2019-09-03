@@ -19,13 +19,7 @@ Next, install **PMD**  by clicking on **Help --> Install new software**, then co
 Configuration files are already included in this repository, you should't need to do anything else but simply cloning and importing the project.
 
 ### Contributions
-Contributions to this project are welcome. Just some rules:
-
- - If you write new features, please do so in a separate ```feature-``` branch.
- - We recommend forking the project, developing your stuff, then contributing back via pull request directly from GitHub
- - Commit often. Do not throw pull requests with a single giant commit adding or changing the whole world. Split it in multiple commits and request a merge to the mainline often.
- - Stay in sync with the develop branch: pull often from develop, so that you don't diverge too much from the main development line.
- - Do not introduce low quality code. All the new code must comply with the PMD, SpotBugs and Checkstyle rules (that are quite strict) and must not introduce any other warning. Resolutions of existing warnings (if any is present) are very welcome instead.
+Check the [contribution guidelines](https://github.com/Martinocom/OpenMineShare/blob/master/CONTRIBUTING.md).
  
- ### License
- This software is released under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0).
+### License
+This software is released under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0).
