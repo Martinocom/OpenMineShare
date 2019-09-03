@@ -10,13 +10,13 @@ public class ControllerImpl implements Controller {
 
 	@Override
 	public void launch() {
-		// TODO Auto-generated method stub
+		// TODO here should go the logic for starting a JavaFX application
 		
 	}
 
 	@Override
 	public void launch(String[] args) {
-		// TODO Auto-generated method stub
+		// TODO here should go the logic for starting a BATCH application
 		
 	}
 
