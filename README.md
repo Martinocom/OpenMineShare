@@ -1,10 +1,14 @@
-# OpenMineShare
+<h1 align="center"> OpenMineShare </h1/>
+
+<p align="center">
 Share your Minecraft server over several PCs. For friends use only!
  
 [![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
+![GitHub contributors](https://img.shields.io/github/contributors/Martinocom/OpenMineShare)
 ![GitHub repo size](https://img.shields.io/github/repo-size/Martinocom/OpenMineShare)
 ![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/LeoSpyke96/OpenMineShare)
-![GitHub contributors](https://img.shields.io/github/contributors/Martinocom/OpenMineShare)
+![GitHub last commit](https://img.shields.io/github/last-commit/Martinocom/OpenMineShare)
+</p>
 
 ## Users
 Under construction.
