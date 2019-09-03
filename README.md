@@ -21,7 +21,9 @@ Under construction.
 
 
 ### Analysis
-
+In order to understand the project structure, we invite you to check the UMLs first.
+ - [Server](https://app.creately.com/diagram/iEDCcxFllv9)
+ - [Client](https://app.creately.com/diagram/7H3ZahjV1gC)
 
 ### Javadocs
 Javadocs for the lastest stable release are available [here](https://leospyke96.github.io/OpenMineShare-javadoc).
@@ -38,6 +40,3 @@ Configuration files are already included in this repository, you should't need t
 
 ### Contributions
 Check the [contribution guidelines](https://github.com/Martinocom/OpenMineShare/blob/master/CONTRIBUTING.md).
- 
-### License
-You can find the updated license [here](https://github.com/Martinocom/OpenMineShare/blob/master/LICENSE) or by clicking on the official license tag at the top of this page.
