@@ -14,7 +14,7 @@ public class ControllerImpl implements Controller {
 
 	@Override
 	public void launch(String[] args) throws Exception {
-		if (args.length == 0) {
+		if (args.length > 0) {
 			this.view = new ViewBatch();
 		} else {
 			this.view = new ViewFX();
