@@ -6,15 +6,10 @@ import it.oms.controller.server.ServerListener;
 public interface Controller {
 	
 	/**
-	 * Launch the application with all default args. This will launch also the GUI interface
+	 * Launch the application, parsing some parameters. If parameters are equal to 0, it will launch it with a GUI by default.
+	 * @param args - arguments to parse. If are equal to 0, it will launch the GUI
 	 */
-	void launch();
-	
-	/**
-	 * Launch the application, parsing some parameters. This will launch the app in batch-mode
-	 * @param args
-	 */
-	void launch(String[] args);
+	void launch(String[] args) throws Exception;
 	
 	/**
 	 * Set the path for the configuration file

@@ -3,21 +3,25 @@ package it.oms.controller;
 import java.util.Map;
 
 import it.oms.controller.server.ServerListener;
+import it.oms.view.View;
+import it.oms.view.batch.ViewBatch;
+import it.oms.view.fx.ViewFX;
 
 public class ControllerImpl implements Controller {
 	
 	private ServerListener serverListener;
+	private View view;
 
 	@Override
-	public void launch() {
-		// TODO here should go the logic for starting a JavaFX application
+	public void launch(String[] args) throws Exception {
+		if (args.length == 0) {
+			this.view = new ViewBatch();
+		} else {
+			this.view = new ViewFX();
+		}
 		
-	}
-
-	@Override
-	public void launch(String[] args) {
-		// TODO here should go the logic for starting a BATCH application
-		
+		this.view.setController(this);
+		this.view.show(args);
 	}
 
 	@Override
