@@ -1,8 +1,8 @@
 package it.oms.controller.server;
 
 public enum ServerPaths {
-	GET_AVAIABLE_SERVERS("get-avaiable-servers"), REQUEST_HOST_SERVER("request-host-servers"), GET_SERVER_FILES("get-server-files"),
-	SERVER_OPENED("server-opened"), SERVER_NOT_OPENED("server-not-opened"), SERVER_ERROR("server-error");
+	REQUEST_AVAIABLE_SERVERS("request-avaiable-servers"), REQUEST_HOST_SERVER("request-host-servers"), REQUEST_SERVER_FILES("request-server-files"),
+	ACK_SERVER_OPENED("server-opened"), ACK_SERVER_ERROR("server-error"), ACK_SERVER_CLOSED("server-closed");
 	
 	private final String path;
 	
