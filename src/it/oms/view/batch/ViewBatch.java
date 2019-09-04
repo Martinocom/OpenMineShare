@@ -1,4 +1,7 @@
-package it.oms.view;
+package it.oms.view.batch;
+
+import it.oms.controller.Controller;
+import it.oms.view.View;
 
 public class ViewBatch implements View {
 
@@ -16,8 +19,8 @@ public class ViewBatch implements View {
 	}
 
 	@Override
-	public void show() {
-		// TODO there is something to do when launching console?
+	public void show(String[] args) {
+		System.out.println("You're a pro: batch mode activated!");
 	}
 
 	@Override
