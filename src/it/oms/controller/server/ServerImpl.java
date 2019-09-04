@@ -1,54 +1,68 @@
 package it.oms.controller.server;
 
+import java.util.Optional;
+
 import org.rapidoid.setup.On;
+
+import it.oms.controller.server.ServerResponses.ServerAvaiability;
 
 public class ServerImpl implements Server, KeepAliveListener {
 
 	private static final int TIMEOUT = 30000;
 	
 	private KeepAliveService keepAliveService;
+	private ServerListener serverListener;
 	private ServerAPI serverAPI;
+	
+	//TODO move this logic to model/controller
+	//private boolean isServerCurrentlyOpen = false;
+	//private Optional<String> address = Optional.empty();
 	
 	@Override
 	public void start() {
-		
-		//TODO change the server API to return common understandable jsons
-		On.get(ServerPaths.GET_AVAIABLE_SERVERS.getPathWithSlash()).json((String msg) -> {
-			getServerAPI().onMessageToGetAvaiableServer();
-			return "";
+	
+		On.get(ServerPaths.REQUEST_AVAIABLE_SERVERS.getPathWithSlash()).json(() -> {					
+			ServerAvaiability response = getServerAPI().onRequestAvaiableServer();
+			return response.toJson();
 		});
 		
-		On.get(ServerPaths.REQUEST_HOST_SERVER.getPathWithSlash()).json((String msg) -> {
+		On.get(ServerPaths.REQUEST_HOST_SERVER.getPathWithSlash()).json(() -> {
+			AckServerOpeningAvaiability response = getServerAPI().onRequestHostServer();
+			serverListener.onClientRequestServerCreation();
+			return response.toJson();
+		});
+		
+		// TODO manage download from link, like "http://myserver.no-ip.com/server.zip"
+		/*
+		On.get(ServerPaths.REQUEST_SERVER_FILES.getPathWithSlash()).json((String path) -> {
+			getServerAPI().onRequestServerFiles();
+			return "";
+		});*/
+		
+		On.get(ServerPaths.ACK_SERVER_OPENED.getPathWithSlash()).json((String msg) -> {
+			getServerAPI().onAckServerOpened();
+			serverListener.onClientServerOpen();
+			return "";
+		});
 			
-			
-			getServerAPI().onMessageToRequestHostServer(getKeepAliveService());
+		On.get(ServerPaths.ACK_SERVER_ERROR.getPathWithSlash()).json((String error) -> {
+			getServerAPI().onAckError();
+			serverListener.onClientServerError();
 			return "";
 		});
 		
-		On.get(ServerPaths.GET_SERVER_FILES.getPathWithSlash()).json((String msg) -> {
-			getServerAPI().onMessageToGetServerFiles();
+		On.get(ServerPaths.ACK_SERVER_CLOSED.getPathWithSlash()).json(() -> {
+			getServerAPI().onAckError();
+			serverListener.onClientServerClose();
 			return "";
 		});
 		
-		On.get(ServerPaths.SERVER_OPENED.getPathWithSlash()).json((String msg) -> {
-			getServerAPI().onMessageServerOpened();
-			return "";
-		});
-		
-		On.get(ServerPaths.SERVER_NOT_OPENED.getPathWithSlash()).json((String msg) -> {
-			getServerAPI().onMessageServerNotOpened();
-			return "";
-		});
-		
-		On.get(ServerPaths.SERVER_ERROR.getPathWithSlash()).json((String msg) -> {
-			getServerAPI().onMessageError();
-			return "";
-		});
+		getServerListener().onServerStarted();
 	}
 
 	@Override
 	public void stop() {
-		
+		getServerListener().onServerStopped();
 	}
 
 	@Override
@@ -78,12 +92,22 @@ public class ServerImpl implements Server, KeepAliveListener {
 	
 	@Override
 	public void onAliveConnectionDetected() {
-		// TODO must do something if connection is ok?
+		getServerListener().onClientStillAlive();
 	}
 	
 	@Override
 	public void onDeadConnectionDetected() {
-		// TODO must do something to interrupt current client for beeing the choosen one: he is dead!
+		getServerListener().onClientDead();
+	}
+
+	@Override
+	public void setServerListener(ServerListener serverListener) {
+		this.serverListener = serverListener;
+	}
+
+	@Override
+	public ServerListener getServerListener() {
+		return this.serverListener;
 	}
 	
 

@@ -25,6 +25,18 @@ public interface Server {
 	KeepAliveService getKeepAliveService();
 	
 	/**
+	 * Set the server listener, for events
+	 * @param serverListener - the server listener
+	 */
+	void setServerListener(final ServerListener serverListener);
+	
+	/**
+	 * Get the server listener, for events
+	 * @return the server listener
+	 */
+	ServerListener getServerListener();
+	
+	/**
 	 * Set the APIs of the server
 	 * @param serverAPI - APIs of the server
 	 */
