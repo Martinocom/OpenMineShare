@@ -1,5 +1,7 @@
 package it.oms.view;
 
+import it.oms.controller.Controller;
+
 public interface View {
 	
 	/**
@@ -16,10 +18,10 @@ public interface View {
 	/**
 	 * Show the view
 	 */
-	void show();
+	void show(String[] args) throws Exception;
 	
 	/*
 	 * Close the view
 	 */
-	void close();
+	void close() throws Exception;
 }
