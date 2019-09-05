@@ -1,19 +1,78 @@
 package it.oms.utils.dns;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+
 /**
  * Provides basic functions for a DNS update tool.
- *
  */
-public interface DNSManager {
+public final class DNSManager {
+
+    private static final int STATUS_OK = 200;
+
+    private static class DNSManagerHolder {
+        private static final DNSManager SINGLETON = new DNSManager(); // NOPMD
+    }
+
+    private DNSManager() {
+    };
+
+    /**
+     * @return a instance of the singleton
+     */
+    public static DNSManager get() {
+        return DNSManagerHolder.SINGLETON;
+
+    }
 
     /**
      * Updates the DNS record just sending a raw curl-like request. No validity
      * check is provided.
      * 
-     * @param rawURL the url
+     * @param resolutor the {@link DNSResolutionStrategy} useful to generate the
+     *                  request
      * @return if the request went fine (dafault {@code true} unless otherwise
      *         specified)
+     * @throws IOException if an exception occurs while sending the request
      */
-    boolean updateRecord(String rawURL);
+    public boolean updateRecord(final DNSResolutionStrategy resolutor) throws IOException {
+        final String request = resolutor.generateCurlRequest();
+        final HttpGet getRequest = new HttpGet(request);
+
+        final DefaultHttpClient httpClient = new DefaultHttpClient();
+        final HttpResponse response = httpClient.execute(getRequest);
+
+        if (response.getStatusLine().getStatusCode() != STATUS_OK) {
+            throw new RuntimeException(String.valueOf(response.getStatusLine().getStatusCode()));
+        }
+
+        try (BufferedReader br = new BufferedReader(new InputStreamReader((response.getEntity().getContent())))) {
+            final StringBuilder bld = new StringBuilder();
+            String output;
+            do {
+                output = br.readLine();
+                if (output != null) {
+                    bld.append(output);
+                }
+            } while (output != null);
+
+            httpClient.getConnectionManager().shutdown();
+            br.close();
+
+            String queryResponse = bld.toString();
+
+            // TODO: manage response
+
+            return true;
+        } catch (IllegalStateException | IOException e) {
+            return false;
+        }
+
+    }
 
 }
