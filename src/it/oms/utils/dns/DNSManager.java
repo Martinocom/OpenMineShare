@@ -36,11 +36,10 @@ public final class DNSManager {
      * 
      * @param resolutor the {@link DNSResolutionStrategy} useful to generate the
      *                  request
-     * @return if the request went fine (dafault {@code true} unless otherwise
-     *         specified)
+     * @return the server response
      * @throws IOException if an exception occurs while sending the request
      */
-    public boolean updateRecord(final DNSResolutionStrategy resolutor) throws IOException {
+    public String updateRecord(final DNSResolutionStrategy resolutor) throws IOException {
         final String request = resolutor.generateCurlRequest();
         final HttpGet getRequest = new HttpGet(request);
 
@@ -64,13 +63,9 @@ public final class DNSManager {
             httpClient.getConnectionManager().shutdown();
             br.close();
 
-            String queryResponse = bld.toString();
-
-            // TODO: manage response
-
-            return true;
-        } catch (IllegalStateException | IOException e) {
-            return false;
+            return bld.toString();
+        } catch (IOException e) {
+            throw e;
         }
 
     }
