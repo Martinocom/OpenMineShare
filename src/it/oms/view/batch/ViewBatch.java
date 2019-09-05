@@ -1,31 +1,38 @@
 package it.oms.view.batch;
 
-import it.oms.controller.Controller;
-import it.oms.view.View;
+import org.tinylog.Logger;
+import it.oms.view.BasicView;
 
-public class ViewBatch implements View {
+/**
+ *
+ */
+public class ViewBatch extends BasicView {
 
-	private Controller controller;
-	
-	@Override
-	public void setController(final Controller controller) {
-		this.controller = controller;
-	}
+    @Override
+    public void show(final String[] args) throws Exception {
+        // TODO Auto-generated method stub
 
-	@Override
-	public Controller getController() {
-		// TODO Auto-generated method stub
-		return this.controller;
-	}
+    }
 
-	@Override
-	public void show(String[] args) {
-		System.out.println("You're a pro: batch mode activated!");
-	}
+    @Override
+    public void close() throws Exception {
+        // TODO Auto-generated method stub
 
-	@Override
-	public void close() {
-		// TODO there is something to do when closing console?
-	}
-	
+    }
+
+    @Override
+    public final void showError(final String message) {
+        Logger.error(message);
+    }
+
+    @Override
+    public final void showWarning(final String message) {
+        Logger.warn(message);
+    }
+
+    @Override
+    public final void showInfo(final String message) {
+        Logger.info(message);
+    }
+
 }

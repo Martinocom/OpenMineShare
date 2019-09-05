@@ -9,49 +9,64 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class ViewFX extends Application implements View {
-	
-	private Controller controller;
-	private Stage stage;
-	
-	@Override
-	public void start(Stage primaryStage) throws Exception {
-		final Button btn = new Button();
+
+    private Controller controller;
+    private Stage stage;
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        final Button btn = new Button();
         btn.setText("Say 'Hello World'");
         btn.setOnAction(action -> {
-        	System.out.println("Hello World!");
+            System.out.println("Hello World!");
         });
 
         final StackPane root = new StackPane();
         root.getChildren().add(btn);
 
-        final Scene scene = new Scene(root, ViewFXAttributes.WIDTH, ViewFXAttributes.HEIGHT);       
-		
-		this.stage = primaryStage;
-		this.stage.setScene(scene);
-		this.stage.setTitle(ViewFXAttributes.TITLE);
-		this.stage.show();	
-	}
-	
-	
-	@Override
-	public void setController(final Controller controller) {
-		this.controller = controller;
-	}
+        final Scene scene = new Scene(root, ViewFXAttributes.WIDTH, ViewFXAttributes.HEIGHT);
 
-	@Override
-	public Controller getController() {
-		return this.controller;
-	}
-	
+        this.stage = primaryStage;
+        this.stage.setScene(scene);
+        this.stage.setTitle(ViewFXAttributes.TITLE);
+        this.stage.show();
+    }
 
-	@Override
-	public void show(String[] args) throws Exception {
-		Application.launch(this.getClass(), args);
-	}
-	
+    @Override
+    public void setController(final Controller controller) {
+        this.controller = controller;
+    }
 
-	@Override
-	public void close() throws Exception {
-		this.stage.close();	
-	}
+    @Override
+    public Controller getController() {
+        return this.controller;
+    }
+
+    @Override
+    public void show(String[] args) throws Exception {
+        Application.launch(this.getClass(), args);
+    }
+
+    @Override
+    public void close() throws Exception {
+        this.stage.close();
+    }
+
+    @Override
+    public void showError(String message) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void showWarning(String message) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void showInfo(String message) {
+        // TODO Auto-generated method stub
+
+    }
 }
