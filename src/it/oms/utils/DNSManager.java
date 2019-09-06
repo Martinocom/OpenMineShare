@@ -1,4 +1,4 @@
-package it.oms.utils.dns;
+package it.oms.utils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
