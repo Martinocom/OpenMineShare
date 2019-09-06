@@ -2,7 +2,7 @@ package it.oms.main;
 
 import it.oms.controller.Controller;
 import it.oms.controller.ControllerImpl;
-import it.oms.utils.dns.DNSManager;
+import it.oms.utils.DNSManager;
 
 public class Main {
 

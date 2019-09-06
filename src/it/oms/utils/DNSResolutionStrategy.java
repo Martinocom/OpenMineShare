@@ -1,4 +1,4 @@
-package it.oms.utils.dns;
+package it.oms.utils;
 
 /**
  * Basis for a DNS update resolution strategy.
