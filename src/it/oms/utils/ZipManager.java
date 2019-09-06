@@ -5,7 +5,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Objects;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -16,7 +15,9 @@ import org.apache.commons.io.IOUtils;
  */
 public final class ZipManager {
 
-    private static final int STATUS_OK = 200;
+    // TODO: observable zip percentage
+    private static int percentage = 0;
+    private static final Object LOCK = new Object();
 
     private static class ZipManagerHolder {
         private static final ZipManager SINGLETON = new ZipManager(); // NOPMD
@@ -30,7 +31,6 @@ public final class ZipManager {
      */
     public static ZipManager get() {
         return ZipManagerHolder.SINGLETON;
-
     }
 
     /**
@@ -44,8 +44,10 @@ public final class ZipManager {
      *                               files to zip
      */
     public void basicZip(final String sourceDir, final String outputFile) throws IOException, FileNotFoundException {
-        try (ZipOutputStream zipFile = new ZipOutputStream(new FileOutputStream(outputFile))) {
-            compressDirectoryToZipfile(sourceDir, sourceDir, zipFile);
+        synchronized (LOCK) {
+            try (ZipOutputStream zipFile = new ZipOutputStream(new FileOutputStream(outputFile))) {
+                compressDirectoryToZipfile(sourceDir, sourceDir, zipFile);
+            }
         }
     }
 
@@ -56,13 +58,13 @@ public final class ZipManager {
 
         if (files != null) {
             for (File tmp : files) {
-                if (file.isDirectory()) {
+                if (tmp.isDirectory()) {
                     compressDirectoryToZipfile(rootDir, sourceDir + File.separator + tmp.getName(), out);
                 } else {
                     ZipEntry entry = new ZipEntry(sourceDir.replace(rootDir, "") + tmp.getName());
                     out.putNextEntry(entry);
 
-                    try (FileInputStream in = new FileInputStream(sourceDir + tmp.getName())) {
+                    try (FileInputStream in = new FileInputStream(sourceDir + File.separator + tmp.getName())) {
                         IOUtils.copy(in, out);
                     }
                 }
@@ -71,5 +73,4 @@ public final class ZipManager {
         }
 
     }
-
 }
