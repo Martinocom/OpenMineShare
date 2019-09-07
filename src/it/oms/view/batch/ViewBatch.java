@@ -34,5 +34,4 @@ public class ViewBatch extends BasicView {
     public final void showInfo(final String message) {
         Logger.info(message);
     }
-
 }
